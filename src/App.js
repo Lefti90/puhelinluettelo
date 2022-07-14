@@ -13,10 +13,34 @@ const App = (props) => {
       name: newName,
     }
 
+    console.log('newName', newName)
+    const name = persons.find(findName)
+    console.log('search: ', name)
+
+    function findName(nimi){
+      console.log('item: ', nimi.name)
+      if (nimi.name === newName) {
+        console.log('true')
+        return true
+      }else{
+        console.log('false')
+        return false
+      }
+    }
+
+    console.log('name', name)
+
+    if (name) {
+      alert(newName + ' is already added to phonebook')
+      return
+    }
+
     setPersons(persons.concat(personObj))
     console.log(personObj)
     setNewName('')
   }
+
+
 
   const handlePersonChange = (event) => {
     console.log(event.target.value)
@@ -36,8 +60,6 @@ const App = (props) => {
       <form onSubmit={addPerson}>
          name : <input value={newName} onChange={handlePersonChange} />
          <button type="submit">add</button>
-        <div>
-        </div>
       </form>
       <h2>Numbers</h2>
       <ul>
